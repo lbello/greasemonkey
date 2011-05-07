@@ -171,8 +171,9 @@ GM_GreasemonkeyService.prototype = {
     gStartupHasRun = true;
 
     var loader = Cc["@mozilla.org/moz/jssubscript-loader;1"]
-      .getService(Ci.mozIJSSubScriptLoader);
+      .getService(Ci.mozIJSSubScriptLoader)  
     loader.loadSubScript("chrome://global/content/XPCNativeWrapper.js");
+    loader.loadSubScript("chrome://greasemonkey/content/parse-js.js");
     loader.loadSubScript("chrome://greasemonkey/content/prefmanager.js");
     loader.loadSubScript("chrome://greasemonkey/content/utils.js");
     loader.loadSubScript("chrome://greasemonkey/content/config.js");
@@ -330,6 +331,7 @@ GM_GreasemonkeyService.prototype = {
                          "\n";
       if (!script.unwrap)
         scriptSrc = "(function(){"+ scriptSrc +"})()";
+      console.log(JSON.stringify(myAST(scriptSrc), 0, 2));
       if (!this.evalInSandbox(scriptSrc, sandbox, script) && script.unwrap)
         this.evalInSandbox("(function(){"+ scriptSrc +"})()",
             sandbox, script); // wrap anyway on early return
