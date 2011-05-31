@@ -332,8 +332,9 @@ GM_GreasemonkeyService.prototype = {
       if (!script.unwrap)
         scriptSrc = "(function(){"+ scriptSrc +"})()";
       console.log(JSON.stringify(myAST(scriptSrc), 0, 2));
-      if (!this.evalInSandbox(scriptSrc, sandbox, script) && script.unwrap)
-        this.evalInSandbox("(function(){"+ scriptSrc +"})()",
+      var scriptSrcInlined=inliner(scriptSrc);
+      if (!this.evalInSandbox(scriptSrcInlined, sandbox, script) && script.unwrap)
+        this.evalInSandbox("(function(){"+ scriptSrcInlined +"})()",
             sandbox, script); // wrap anyway on early return
     }
   },

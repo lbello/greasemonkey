@@ -1318,6 +1318,9 @@ var warn = function() {};
 //        warn = logger;
 //};
 
-	myAST = parse;
+myAST = parse;
+
+function inliner(code) {
+        return parse(code)
 
 }());
