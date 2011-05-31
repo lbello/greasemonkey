@@ -173,6 +173,8 @@ GM_GreasemonkeyService.prototype = {
     var loader = Cc["@mozilla.org/moz/jssubscript-loader;1"]
       .getService(Ci.mozIJSSubScriptLoader)  
     loader.loadSubScript("chrome://global/content/XPCNativeWrapper.js");
+    loader.loadSubScript("chrome://greasemonkey/content/third-party/parse-js.js");
+    loader.loadSubScript("chrome://greasemonkey/content/third-party/process.js");
     loader.loadSubScript("chrome://greasemonkey/content/parse-js.js");
     loader.loadSubScript("chrome://greasemonkey/content/prefmanager.js");
     loader.loadSubScript("chrome://greasemonkey/content/utils.js");
